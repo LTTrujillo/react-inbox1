@@ -2,11 +2,28 @@ import React, { Component } from 'react';
 import '../index.css';
 // import MessageList from './message-list'
 
+const url = 'http://localhost:8082/api/messages'
 
 class Message extends Component {
     
+    toggleStar(idx){
+        let temp = 5
+        console.log("here")
+        fetch(url,{
+          method: "PATCH",
+          node: "no-cors",
+          body: JSON.stringify({command: "star", messageIds: [temp]}),
+          headers: {
+            "Content-Type": "application/json"
+          }      
+        }).then(response => response.json()).then(data => console.log("data",data))
+
+          .catch(err => console.error(err))
+           
+      
+      }
+    
     render() {
-        console.log("props", this.props.message.labels)
       return (
         <div>  
             <div className={this.props.read ?(this.props.message.selected ? "row message read selected" : "row message read") : (this.props.message.selected ? "row message unread selected" : "row message unread") }>
@@ -16,7 +33,7 @@ class Message extends Component {
                     <input type="checkbox" />
                 </div>
                 <div className="col-xs-2">
-                    <i className={this.props.message.starred ? "star fa fa-star": "star fa fa-star-o"}></i>
+                    <i className={this.props.message.starred ? "star fa fa-star": "star fa fa-star-o"} onClick = {this.toggleStar}></i>
                 </div>
             </div>
             </div>

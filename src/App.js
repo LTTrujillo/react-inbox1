@@ -10,7 +10,8 @@ class App extends Component {
   constructor(){
     super()
     this.state={
-      data:[]
+      data:[],
+      temp: true
     }
   }
 
@@ -30,7 +31,21 @@ class App extends Component {
     this.fetchEmails()
   }
 
+  // toggleStar(idx){
+  //   fetch(url,{
+  //     method: "PATCH",
+  //     node: "no-cors",
+  //     body: JSON.stringify({command: "star", messageIds: [idx]}),
+  //     headers: {
+  //       "Content-Type": "application/json"
+  //     }      
+  //   }).then(response => response.json()).then(data => console.log("data",data))
+  //     .catch(err => console.error(err))
+  
+  // }
+
   render() {
+    // this.toggleStar(3)
     return (
       <div className="App">
         <ToolBar></ToolBar>
